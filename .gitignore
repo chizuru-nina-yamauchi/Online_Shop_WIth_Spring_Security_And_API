@@ -37,4 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-/application.properties
+### Ignore application.properties ###
+/src/main/resources/application.properties
