@@ -106,4 +106,12 @@ public class UserService implements UserDetailsService {
         javaMailSender.send(email);
     }
 
+    public AppUser findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public AppUser save(AppUser user) {
+        return userRepository.save(user);
+    }
+
 }
