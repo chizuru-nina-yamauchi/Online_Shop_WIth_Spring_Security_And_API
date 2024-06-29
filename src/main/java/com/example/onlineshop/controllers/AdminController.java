@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/roles")
-public class RoleController {
+@RequestMapping("/admin")
+public class AdminController {
 
     @Autowired
     private RoleService roleService;
@@ -28,18 +28,24 @@ public class RoleController {
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping
+    @PostMapping("/roles")
     public Role createRole(@RequestBody Role role) {
         return roleService.save(role);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/assign")
+    @PostMapping("/roles/assign")
     public String assignRoleToUser(@RequestParam String username, @RequestParam String roleName) {
         AppUser user = userService.findByUsername(username);
         Role role = roleService.findByName(roleName);
         user.getRoles().add(role);
         userService.save(user);
         return "Role assigned successfully";
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/home")
+    public String adminHome() {
+        return "admin-home";
     }
 }

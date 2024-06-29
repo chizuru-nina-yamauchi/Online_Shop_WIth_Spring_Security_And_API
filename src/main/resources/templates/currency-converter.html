@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Currency Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Online Shop</a>
+</nav>
+<div class="container mt-5">
+    <h2>Currency Converter</h2>
+    <form th:action="@{/convert-price}" method="get">
+        <div class="mb-3">
+            <label for="productId" class="form-label">Product ID:</label>
+            <input type="text" class="form-control" id="productId" name="productId" required>
+        </div>
+        <div class="mb-3">
+            <label for="currency" class="form-label">Currency:</label>
+            <select class="form-control" id="currency" name="currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+                <option value="GBP">GBP</option>
+                <option value="AUD">AUD</option>
+                <option value="CAD">CAD</option>
+                <option value="DKK">DKK</option>
+                <option value="NOK">NOK</option>
+
+
+                <!-- Add more currencies as needed -->
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Convert</button>
+    </form>
+</div>
+</body>
+</html>

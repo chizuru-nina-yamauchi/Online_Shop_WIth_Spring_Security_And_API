@@ -19,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -112,6 +113,14 @@ public class UserService implements UserDetailsService {
 
     public AppUser save(AppUser user) {
         return userRepository.save(user);
+    }
+
+    public List<AppUser> findAll() {
+        return userRepository.findAll();
+    }
+
+    public AppUser findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
     }
 
 }
