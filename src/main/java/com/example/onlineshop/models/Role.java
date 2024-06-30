@@ -19,6 +19,10 @@ public class Role {
     public Role() {
     }
 
+    public Role(String name) {
+        this.name = name;
+    }
+
     public Role(String name, Set<AppUser> users) {
         this.name = name;
         this.users = users;

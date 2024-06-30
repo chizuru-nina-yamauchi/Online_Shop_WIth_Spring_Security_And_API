@@ -6,6 +6,7 @@ import com.example.onlineshop.models.VerificationToken;
 import com.example.onlineshop.repositories.RoleRepository;
 import com.example.onlineshop.repositories.UserRepository;
 import com.example.onlineshop.repositories.VerificationRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,6 +21,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -72,11 +74,26 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public AppUser registerNewUser(AppUser user){
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new RuntimeException("Username already exists");
+        }
+        if (userRepository.findByEmail(user.getEmail()).isPresent()) {
+            throw new RuntimeException("Email already registered");
+        }
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER").orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRoles(Collections.singleton(userRole));
-        return userRepository.save(user);
+        user.setEnabled(false); // initially disable the user
+
+        AppUser registeredUser = userRepository.save(user);
+        String token = UUID.randomUUID().toString();
+        createVerificationToken(registeredUser, token);
+        sendVerificationEmail(registeredUser, token);
+
+        return registeredUser;
     }
 
     public void createVerificationToken(AppUser user, String token){
@@ -104,11 +121,15 @@ public class UserService implements UserDetailsService {
         email.setTo(recipientAddress);
         email.setSubject(subject);
         email.setText(message + confirmationUrl);
-        javaMailSender.send(email);
+        try {
+            javaMailSender.send(email);
+        } catch(Exception e) {
+            System.err.println("Failed to send email" + e.getMessage());
+        }
     }
 
     public AppUser findByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found"));
+        return userRepository.findByUsername(username).orElse(null);
     }
 
     public AppUser save(AppUser user) {

@@ -3,6 +3,7 @@ package com.example.onlineshop.controllers;
 
 import com.example.onlineshop.models.AppUser;
 import com.example.onlineshop.models.Role;
+import com.example.onlineshop.models.VerificationToken;
 import com.example.onlineshop.service.RoleService;
 import com.example.onlineshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/users")
@@ -42,9 +45,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public String signUpNewUser(@ModelAttribute AppUser user){
-        userService.registerNewUser(user);
-        return "redirect:/login";
+    public String signUpNewUser(@ModelAttribute AppUser user, Model model){
+        try {
+            AppUser registeredUser = userService.registerNewUser(user);
+            model.addAttribute("message", "A verification email has been sent to " + registeredUser.getEmail());
+        } catch (Exception e) {
+            model.addAttribute("error", "An error occurred: " + e.getMessage());
+        }
+        return "registration-confirm";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -62,6 +70,20 @@ public class UserController {
         user.getRoles().add(role);
         userService.save(user);
         return "redirect:/users";
+    }
+
+
+    @GetMapping("/registrationConfirm")
+    public String confirmRegistration(@RequestParam("token") String token, Model model){
+        VerificationToken verificationToken = userService.getVerificationToken(token);
+        if (verificationToken == null) {
+            model.addAttribute("message", "Invalid token.");
+            return "registration-confirm";
+        }
+        AppUser user = verificationToken.getUser();
+        userService.enableUser(user);
+        model.addAttribute("message", "Your account has been verified. You can now log in.");
+        return "registration-confirm";
     }
 
 }
