@@ -1,5 +1,12 @@
 ### Assignment: Building an Online Shop with Currency Conversion
 
+
+Assignment created and guided with README file by Safwan kher(https://github.com/safwan-kher).
+
+---
+README and instruction by Safwan kher.
+
+
 #### Objective:
 In this assignment, you will build an online shop application using Java Spring Boot, Spring Security, JPA, Hibernate, and Thymeleaf. The application will allow users to sign up, log in, browse products, add products to their cart, and convert prices between different currencies using the ExchangeRate API.
 
@@ -198,3 +205,30 @@ Submit the following:
    - Error handling ensures that your application can gracefully handle unexpected situations. It includes throwing exceptions and providing meaningful error messages to the user.
 
 By completing this assignment, you will gain hands-on experience with these concepts and learn how to build a secure, user-friendly online shop application with currency conversion capabilities.
+
+
+------
+
+
+From here by Chizuru Yamauchi
+
+
+## Project Instructions
+
+### 1. Set Up the Project
+1. New Project: From IntelliJ IDEA, create a new Maven project.
+2. Dependencies: Add dependencies for Spring Boot, Spring Data JPA, PostgreSQL, Thymeleaf, and Bootstrap 5.
+3. On terminal, git init -> git remote add origin git@URL -> git remote -v -> git pull origin main -> git branch -M main -> git add. -> git commit -m "----" -> git push origin main
+
+
+### 2. Configure PostgreSQL Database
+1. On terminal, sudo -u postgres psql -> CREATE DATABASE database_name; -> \c database_name -> \q
+
+2. Application Properties: Configure the PostgreSQL database connection in the `application.properties` file(and put the file name in .gitignore to secure the sensitive information.)
+
+### 3. Add Java source code and html files
+
+## Result: How it looks like and works
+![pic1](./src/main/resources/static/pic1.png)
+
+![pic2](./src/main/resources/static/pic2.png)
