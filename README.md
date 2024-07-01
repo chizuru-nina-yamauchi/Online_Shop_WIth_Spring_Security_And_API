@@ -232,3 +232,15 @@ From here by Chizuru Yamauchi
 ![pic1](./src/main/resources/static/pic1.png)
 
 ![pic2](./src/main/resources/static/pic2.png)
+
+After filling all the information and clicking Sign Up, the user will receive an email to verify the email address. The user needs to click the link in the email to verify the email address.
+![pic4](./src/main/resources/static/pic4.png)
+
+![pic3](./src/main/resources/static/pic3.png)
+
+Log in with new username and new password
+![pic5](./src/main/resources/static/pic5.png)
+
+
+For Email Testing:
+![picTest](./src/main/resources/static/picTestPassed.png)
