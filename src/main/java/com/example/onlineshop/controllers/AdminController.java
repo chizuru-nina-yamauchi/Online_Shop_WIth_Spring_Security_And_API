@@ -6,11 +6,15 @@ import com.example.onlineshop.service.RoleService;
 import com.example.onlineshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/admin")
 public class AdminController {
 
@@ -19,6 +23,18 @@ public class AdminController {
 
     @Autowired
     private UserService userService;
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/home")
+    public String adminHome(Authentication authentication, Model model){
+        System.out.println("Authenticated user: " + authentication.getName());
+        authentication.getAuthorities().forEach(authority -> {
+            System.out.println("Role: " + authority.getAuthority());
+        });
+
+        model.addAttribute("adminName", authentication.getName());
+        return "admin-home";
+    }
 
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -43,9 +59,4 @@ public class AdminController {
         return "Role assigned successfully";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/home")
-    public String adminHome() {
-        return "admin-home";
-    }
 }

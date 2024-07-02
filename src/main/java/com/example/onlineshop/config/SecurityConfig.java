@@ -24,9 +24,9 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorizeRequests -> // Allows restricting access based upon the HttpServletRequest using RequestMatcher implementations.
                     authorizeRequests
-                    .requestMatchers( "/users/signup", "/login","/verify", "/assign-admin").permitAll() // Allow access to the signup and login pages without authentication
-                    .requestMatchers("/currency-converter").hasRole("ADMIN")
-                    .requestMatchers("/admin-home").hasRole("ADMIN")
+                    .requestMatchers( "/users/signup", "/login","/registration-confirm").permitAll() // Allow access to the signup and login pages without authentication
+                    .requestMatchers("/currency-converter").permitAll()
+                    .requestMatchers("/admin-home", "/assign-admin").hasRole("ADMIN")
                     .anyRequest().authenticated() // All other requests require authentication
             )
             .formLogin(formLogin ->

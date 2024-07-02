@@ -20,14 +20,12 @@ public class DataInit implements CommandLineRunner {
     private final UserService userService;
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
-    private final MultipartConfigElement multipartConfigElement;
 
     @Autowired
     public DataInit(UserService userService, RoleService roleService, PasswordEncoder passwordEncoder, MultipartConfigElement multipartConfigElement) {
         this.userService = userService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
-        this.multipartConfigElement = multipartConfigElement;
     }
 
     @Override

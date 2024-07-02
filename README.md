@@ -242,5 +242,34 @@ Log in with new username and new password
 ![pic5](./src/main/resources/static/pic5.png)
 
 
-For Email Testing:
+**Email Testing:** Test passed.
 ![picTest](./src/main/resources/static/picTestPassed.png)
+
+
+**Log in again as a user on FireFox**
+
+![pic7](./src/main/resources/static/pic7.png)
+
+- Home as a user
+![pic8](./src/main/resources/static/pic8.png)
+
+
+**Log in as an admin on FireFox**
+- Home as an admin
+![pic9](./src/main/resources/static/pic9.png)
+
+- Jump to Admin Home Page and see all the option admin could do
+![pic10](./src/main/resources/static/pic10.png)
+
+- Click Product List and see all the products(it is empty for the first time)
+
+![pic11](./src/main/resources/static/pic11.png)
+
+- Click Add Product and add a new product
+
+![pic12](./src/main/resources/static/pic12.png)
+
+![pic13](./src/main/resources/static/pic13.png)
+
+- After saving the product, the product list will show the product
+![pic14](./src/main/resources/static/pic14.png)
