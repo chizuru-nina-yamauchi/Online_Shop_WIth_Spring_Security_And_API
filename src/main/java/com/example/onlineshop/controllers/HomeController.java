@@ -23,4 +23,9 @@ public class HomeController {
         return "user-home";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "redirect:/login?logout"; // Redirect to login page with logout parameter
+    }
+
 }

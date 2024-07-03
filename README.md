@@ -288,3 +288,17 @@ Log in with new username and new password
 - Click 'Convert Price' to go to the convert currency page to convert the price with product id number to different currencies
 
 ![pic17](./src/main/resources/static/pic17.png)
+
+- Assign role as admin
+
+![pic18](./src/main/resources/static/pic18.png)
+
+- After assigning the role, username demoChizuru(id 6) will be able to see the admin page
+
+![pic20](./src/main/resources/static/pic20.png)
+
+![pic19](./src/main/resources/static/pic19.png)
+
+(role_id 5 is admin: user_id 6(demoChizuru) is now assigned as an admin on database)
+
+![pic21](./src/main/resources/static/pic21.png)

@@ -9,10 +9,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.security.core.Authentication;
-
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -26,37 +22,30 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/home")
-    public String adminHome(Authentication authentication, Model model){
-        System.out.println("Authenticated user: " + authentication.getName());
-        authentication.getAuthorities().forEach(authority -> {
-            System.out.println("Role: " + authority.getAuthority());
-        });
-
-        model.addAttribute("adminName", authentication.getName());
+    public String adminHome(Model model) {
+        model.addAttribute("adminName", "Admin");
         return "admin-home";
     }
 
-
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping
-    public List<Role> getAllRoles() {
-        return roleService.findAll();
+    @GetMapping("/assign-role")
+    public String showAssignRoleForm(Model model) {
+        model.addAttribute("roles", roleService.findAll());
+        return "assign-role";
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/roles")
-    public Role createRole(@RequestBody Role role) {
-        return roleService.save(role);
-    }
-
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PostMapping("/roles/assign")
-    public String assignRoleToUser(@RequestParam String username, @RequestParam String roleName) {
+    @PostMapping("/assign-role")
+    public String assignRoleToUser(@RequestParam String username, @RequestParam String roleName, Model model) {
         AppUser user = userService.findByUsername(username);
-        Role role = roleService.findByName(roleName);
-        user.getRoles().add(role);
-        userService.save(user);
-        return "Role assigned successfully";
+        if (user != null) {
+            Role role = roleService.findByName(roleName);
+            user.getRoles().add(role);
+            userService.save(user);
+            model.addAttribute("successMessage", "Role assigned successfully.");
+        } else {
+            model.addAttribute("errorMessage", "User not found.");
+        }
+        return "redirect:/admin/home";
     }
-
 }
