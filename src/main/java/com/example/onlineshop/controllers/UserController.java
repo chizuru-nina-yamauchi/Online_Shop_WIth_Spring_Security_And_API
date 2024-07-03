@@ -85,4 +85,12 @@ public class UserController {
         return "registration-confirm";
     }
 
+    @GetMapping("/users/{username}")
+    public String viewUserDetails(@PathVariable String username, Model model) {
+        AppUser user = userService.findByUsername(username);
+        model.addAttribute("user", user);
+        return "user-detail";
+    }
+
+
 }

@@ -21,5 +21,12 @@ public class CurrencyConverterController {
         model.addAttribute("convertedPrice", convertedPrice); // Passing the converted Price to the view. This makes available the convertedPrice to the Thymeleaf view(HTML file).
         return "currency-converter";
     }
+
+
+    @GetMapping("/convert-price-form")
+    public String showCurrencyConverterForm(@RequestParam Long productId, Model model) {
+        model.addAttribute("productId", productId);
+        return "currency-converter";
+    }
 }
 // We don't have to create @Postmapping because we are not changing anything in the database. We are just converting the currency.

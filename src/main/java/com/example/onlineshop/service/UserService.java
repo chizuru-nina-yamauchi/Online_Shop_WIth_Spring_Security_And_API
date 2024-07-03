@@ -1,5 +1,8 @@
 package com.example.onlineshop.service;
 
+import java.util.logging.Logger;
+
+
 import com.example.onlineshop.models.AppUser;
 import com.example.onlineshop.models.Role;
 import com.example.onlineshop.models.VerificationToken;
@@ -41,6 +44,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+
+    private static final Logger logger = Logger.getLogger(UserService.class.getName());
 
 
     /**
@@ -107,9 +113,11 @@ public class UserService implements UserDetailsService {
         return tokenRepository.findByToken(token);
     }
 
+    @Transactional
     public void enableUser(AppUser user){
         user.setEnabled(true);
         userRepository.save(user);
+        logger.info("User enabled: " + user.getUsername());
     }
 
     public void sendVerificationEmail(AppUser user, String token){
