@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
@@ -10,9 +10,9 @@
     <a class="navbar-brand" href="/">Online Shop</a>
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{/products/new}">Add New Product</a>
-            </li>
+            <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+    <a class="nav-link" th:href="@{/products/new}">Add New Product</a>
+</li>
         </ul>
     </div>
 </nav>

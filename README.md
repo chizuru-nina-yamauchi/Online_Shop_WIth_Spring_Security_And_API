@@ -229,76 +229,109 @@ From here by Chizuru Yamauchi
 ### 3. Add Java source code and html files
 
 ## Result: How it looks like and works
+
+### You request **localhost:8080**
+
 ![pic1](./src/main/resources/static/pic1.png)
+
+**There is no user so far in the database and we have to sign up first.**
 
 ![pic2](./src/main/resources/static/pic2.png)
 
-After filling all the information and clicking Sign Up, the user will receive an email to verify the email address. The user needs to click the link in the email to verify the email address.
-![pic4](./src/main/resources/static/pic4.png)
+**After filling the sign-up form and click 'Sign Up', the user get the verification email**
 
 ![pic3](./src/main/resources/static/pic3.png)
 
-Log in with new username and new password
+**Verification Email**
+
+![pic4](./src/main/resources/static/pic4.png)
+
+
+
+
+**Newly log in with a new username and a new password as a user(role)**.
 ![pic5](./src/main/resources/static/pic5.png)
 
 
 **Email Testing:** Test passed.
+
 ![picTest](./src/main/resources/static/picTestPassed.png)
 
 
-**Log in again as a user on FireFox**
+### **Log in again as a user**
 
 ![pic7](./src/main/resources/static/pic7.png)
 
-- Home as a user
+**Home as a user**
+
 ![pic8](./src/main/resources/static/pic8.png)
 
+**Click 'Shopping' and the user(demoChizuru) can see product lists** :(Jump to Product List and see all the products)
+  
+*Because demoChizuru logged in as a user now, there is no feature of 'Add New Product'
 
-**Log in as an admin on FireFox**
-- Home as an admin
+![pic25](./src/main/resources/static/pic25.png)
+
+### **Log in as an admin**
+**Home as an admin**
+
 ![pic9](./src/main/resources/static/pic9.png)
 
-- Jump to Admin Home Page and see all the option admin could do
+**Click 'Admin Home'** and jump to Admin Home Page and see all the option admin could do
+
 ![pic10](./src/main/resources/static/pic10.png)
 
-- Click Product List and see all the products(it is empty for the first time)
+**Click Product List** and see all the products. It is empty now because there is no product yet. But since the user logged in as an admin, the admin can add a new product with 'Add New Product' button.
 
 ![pic11](./src/main/resources/static/pic11.png)
 
-- Click Add Product and add a new product
+**Click Add Product** and add a new product
 
 ![pic12](./src/main/resources/static/pic12.png)
 
 ![pic13](./src/main/resources/static/pic13.png)
 
-- After saving the product, the product list will show the product
+**Click 'Save' the product** then the product list will show the product
 
 ![pic14](./src/main/resources/static/pic14.png)
 
 
-- Click 'View' to see the product detail
+**Click 'View'** to see the product detail
 
 ![pic15](./src/main/resources/static/pic15.png)
 
 
-- Click 'Edit' to edit the product
+**Click 'Edit'** to edit the product
 
 ![pic16](./src/main/resources/static/pic16.png)
 
-- Click 'Convert Price' to go to the convert currency page to convert the price with product id number to different currencies
+**Click 'Convert Price'** to go to the convert currency page to convert the price with product id number to different currencies
 
 ![pic17](./src/main/resources/static/pic17.png)
 
-- Assign role as admin
+**Assign role to the user as admin**
 
 ![pic18](./src/main/resources/static/pic18.png)
 
-- After assigning the role, username demoChizuru(id 6) will be able to see the admin page
+**After assigning the role, you can see the modification on the database**
 
 ![pic20](./src/main/resources/static/pic20.png)
 
 ![pic19](./src/main/resources/static/pic19.png)
 
-(role_id 5 is admin: user_id 6(demoChizuru) is now assigned as an admin on database)
+**The user ('user_id 6' = demoChizuru) is now assigned as an admin on database. 'role_id 5' = ROLE_ADMIN)**'
 
 ![pic21](./src/main/resources/static/pic21.png)
+
+**demoChizuru can access to 'Admin Home' and also can see the page as a normal user for 'Shopping'**
+
+![pic23](./src/main/resources/static/pic23.png)
+
+**demoChizuru can go to Admin Home and do the admin tasks**
+
+![pic24](./src/main/resources/static/pic24.png)
+
+**When you want to log out** click logout, and you will be logged out, then you can log in again as a user or admin.
+
+![pic22](./src/main/resources/static/pic22.png)
+
