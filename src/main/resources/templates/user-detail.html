@@ -14,7 +14,10 @@
     <div>
         <h4>Username: <span th:text="${user.username}">Username</span></h4>
         <h4>Email: <span th:text="${user.email}">Email</span></h4>
-        <h4>Roles: <span th:text="${user.roles}">Roles</span></h4>
+        <h4>Roles: </h4>
+        <ul>
+            <li th:each="role : ${user.roles}" th:text="${role.name}"></li>
+        </ul>
     </div>
 </div>
 </body>

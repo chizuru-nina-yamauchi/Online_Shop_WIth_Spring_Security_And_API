@@ -6,6 +6,7 @@ import com.example.onlineshop.models.Role;
 import com.example.onlineshop.models.VerificationToken;
 import com.example.onlineshop.service.RoleService;
 import com.example.onlineshop.service.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -30,10 +31,16 @@ public class UserController {
         return "user-list";
     }
 
-    @GetMapping("/{id}")
-    public String getUser(@PathVariable Long id, Model model){
-        model.addAttribute("user", userService.findById(id));
+    @GetMapping("/{username}")
+    public String getUser(@PathVariable String username, Model model){
+        AppUser user = userService.findByUsername(username);
+        if(user != null){
+            model.addAttribute("user", user);
         return "user-detail";
+        }else{
+            model.addAttribute("error", "User not found");
+            return "redirect:/users";
+        }
     }
 
 
@@ -71,7 +78,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-
+    @Transactional
     @GetMapping("/registrationConfirm")
     public String confirmRegistration(@RequestParam("token") String token, Model model){
         VerificationToken verificationToken = userService.getVerificationToken(token);
@@ -85,12 +92,6 @@ public class UserController {
         return "registration-confirm";
     }
 
-    @GetMapping("/users/{username}")
-    public String viewUserDetails(@PathVariable String username, Model model) {
-        AppUser user = userService.findByUsername(username);
-        model.addAttribute("user", user);
-        return "user-detail";
-    }
 
 
 }

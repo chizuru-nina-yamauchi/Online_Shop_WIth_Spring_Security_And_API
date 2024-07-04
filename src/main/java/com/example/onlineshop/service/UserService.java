@@ -115,9 +115,11 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void enableUser(AppUser user){
-        user.setEnabled(true);
-        userRepository.save(user);
-        logger.info("User enabled: " + user.getUsername());
+        AppUser managedUser = userRepository.findById(user.getId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        managedUser.setEnabled(true);
+        userRepository.save(managedUser);
+        logger.info("User enabled: " + managedUser.getUsername());
     }
 
     public void sendVerificationEmail(AppUser user, String token){
