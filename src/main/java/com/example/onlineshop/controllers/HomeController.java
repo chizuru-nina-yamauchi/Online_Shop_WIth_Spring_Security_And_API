@@ -18,11 +18,6 @@ public class HomeController {
         return "login";
     }
 
-    @GetMapping("/user/home")
-    public String userHome() {
-        return "user-home";
-    }
-
     @GetMapping("/logout")
     public String logout() {
         return "redirect:/login?logout"; // Redirect to login page with logout parameter

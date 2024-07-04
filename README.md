@@ -242,7 +242,7 @@ From here by Chizuru Yamauchi
 
 ![pic3](./src/main/resources/static/pic3.png)
 
-**Verification Email**
+**The user will get verification Email:** Click the url to verify the email.
 
 ![pic4](./src/main/resources/static/pic4.png)
 
@@ -255,20 +255,20 @@ From here by Chizuru Yamauchi
 
 **Email Testing:** Test passed.
 
-![picTest](./src/main/resources/static/picTestPassed.png)
+![picTest](./src/main/resources/static/picTest.png)
 
 
-### **Log in again as a user**
+### **Log in again as a default role 'user'(username = naruto)**
 
 ![pic7](./src/main/resources/static/pic7.png)
 
-**Home as a user**
+**Home as a user** :logged in as a user (username = 'naruto') *Updated
 
-![pic8](./src/main/resources/static/pic8.png)
+![pic32](./src/main/resources/static/pic32.png)
 
-**Click 'Shopping' and the user(demoChizuru) can see product lists** :(Jump to Product List and see all the products)
+**Click 'Browser Products' and the user(naruto) can see product lists** :(Jump to Product List and see all the products)
   
-*Because demoChizuru logged in as a user now, there is no feature of 'Add New Product'
+*Because naruto logged in as a role_user now, there is no feature of 'Add New Product'
 
 ![pic25](./src/main/resources/static/pic25.png)
 
@@ -319,17 +319,34 @@ From here by Chizuru Yamauchi
 
 ![pic19](./src/main/resources/static/pic19.png)
 
-**The user ('user_id 6' = demoChizuru) is now assigned as an admin on database. 'role_id 5' = ROLE_ADMIN)**'
+**The user ('user_id 6' = demoChizuru) is now assigned as an admin(and also still as a user) on database. 'role_id 5' = ROLE_ADMIN)**'
 
 ![pic21](./src/main/resources/static/pic21.png)
 
-**demoChizuru can access to 'Admin Home' and also can see the page as a normal user for 'Shopping'**
+**demoChizuru can access to 'Admin Home' and 'User Home' since demoChizuru got two roles now** (*Updated)
 
-![pic23](./src/main/resources/static/pic23.png)
+![pic28](./src/main/resources/static/pic28.png)
 
-**demoChizuru can go to Admin Home and do the admin tasks**
+**demoChizuru can go to 'Admin Home' and do the admin tasks**
 
-![pic24](./src/main/resources/static/pic24.png)
+![pic29](./src/main/resources/static/pic29.png)
+
+**Click 'Manage Users' and see the user list**
+
+![pic26](./src/main/resources/static/pic26.png)
+
+**Click 'View' to see the user detail**
+
+![pic27](./src/main/resources/static/pic27.png)
+
+
+**demoChizuru can still go to 'User Home' and can view as a normal user**(*Updated)
+
+![pic30](./src/main/resources/static/pic30.png)
+
+**demoChizuru can view her own profile**
+
+![pic31](./src/main/resources/static/pic31.png)
 
 **When you want to log out** click logout, and you will be logged out, then you can log in again as a user or admin.
 

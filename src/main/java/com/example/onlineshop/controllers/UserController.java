@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 
 @Controller
@@ -23,6 +24,16 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/home")
+    public String userHome(Model model, Authentication authentication) {
+        AppUser user = userService.findByUsername(authentication.getName());
+        if (user != null) {
+            model.addAttribute("username", user.getUsername());
+        }
+        return "user-home";
+    }
 
 
     @GetMapping
