@@ -18,6 +18,10 @@
         <ul>
             <li th:each="role : ${user.roles}" th:text="${role.name}"></li>
         </ul>
+        <form th:action="@{/users/{username}(username=${user.username})}" method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <input type="submit" value="Delete" class="btn btn-danger"/>
+        </form>
     </div>
 </div>
 </body>

@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -44,6 +45,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
 
     private static final Logger logger = Logger.getLogger(UserService.class.getName());
@@ -115,11 +119,16 @@ public class UserService implements UserDetailsService {
 
     @Transactional
     public void enableUser(AppUser user){
-        AppUser managedUser = userRepository.findById(user.getId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
-        managedUser.setEnabled(true);
-        userRepository.save(managedUser);
-        logger.info("User enabled: " + managedUser.getUsername());
+        try {
+            AppUser managedUser = userRepository.findById(user.getId())
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+            managedUser.setEnabled(true);
+            userRepository.save(managedUser);
+            logger.info("User enabled: " + managedUser.getUsername());
+        } catch (Exception e) {
+            logger.severe("Failed to enable user: " + e.getMessage());
+            throw e;
+        }
     }
 
     public void sendVerificationEmail(AppUser user, String token){
@@ -154,6 +163,22 @@ public class UserService implements UserDetailsService {
 
     public AppUser findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
+    @Transactional
+    public void deleteUser(String username) {
+        AppUser user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // Delete the verification token associated with the user
+        VerificationToken verificationToken = tokenRepository.findByUser(user);
+        if (verificationToken != null) {
+            tokenRepository.delete(verificationToken);
+        }
+
+        // Delete the user
+        userRepository.delete(user);
     }
 
 }

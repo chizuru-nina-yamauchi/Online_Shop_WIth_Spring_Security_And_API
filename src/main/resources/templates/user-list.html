@@ -30,6 +30,10 @@
             <td>
                 <a th:href="@{/users/{username}(username=${user.username})}" class="btn btn-info btn-sm">View</a>
                 <a th:href="@{/admin/assign-role(username=${user.username})}" class="btn btn-warning btn-sm">Assign Role</a>
+                <form th:action="@{/users/{username}(username=${user.username})}" method="post" style="display: inline;">
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="submit" value="Delete" class="btn btn-danger btn-sm"/>
+                </form>
             </td>
         </tr>
         </tbody>

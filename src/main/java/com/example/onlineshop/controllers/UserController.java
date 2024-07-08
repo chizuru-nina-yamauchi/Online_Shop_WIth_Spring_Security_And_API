@@ -99,8 +99,16 @@ public class UserController {
         }
         AppUser user = verificationToken.getUser();
         userService.enableUser(user);
+        userService.save(user); // Save the user after enabling
         model.addAttribute("message", "Your account has been verified. You can now log in.");
         return "registration-confirm";
+    }
+
+    @PreAuthorize("#username == authentication.principal.username or hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/{username}")
+    public String deleteUser(@PathVariable String username) {
+        userService.deleteUser(username);
+        return "redirect:/users";
     }
 
 
