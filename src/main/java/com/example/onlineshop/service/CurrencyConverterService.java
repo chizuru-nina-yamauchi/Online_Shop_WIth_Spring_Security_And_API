@@ -1,5 +1,6 @@
 package com.example.onlineshop.service;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -56,6 +57,7 @@ public class CurrencyConverterService {
 
     // A static inner class that represents the response from the exchange rate API
     private static class ExchangeRateResponse{
+        @JsonProperty("conversion_result")
         private BigDecimal conversionResult; // This field will be automatically populated with the data from the API response because of Spring's automatic conversion of the HTTP response body to a Java object
 
         // getter and setter

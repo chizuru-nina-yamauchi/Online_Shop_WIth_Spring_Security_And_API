@@ -8,8 +8,13 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class ProductService {
+
+    private static final Logger logger = LoggerFactory.getLogger(ProductService.class);
 
     @Autowired
     private ProductRepository productRepository;
@@ -50,7 +55,10 @@ public class ProductService {
     public BigDecimal convertProductPrice(Long productId, String targetCurrency){
         Product product = getProductById(productId);
         BigDecimal price = BigDecimal.valueOf(product.getPrice());
-        return currencyConverterService.convertCurrency(product.getCurrency(), targetCurrency, price);
+        logger.debug("Original price: {}", price);
+        BigDecimal convertedPrice = currencyConverterService.convertCurrency(product.getCurrency(), targetCurrency, price);
+        logger.debug("Converted price: {}", convertedPrice);
+        return convertedPrice;
     }
 
 }
