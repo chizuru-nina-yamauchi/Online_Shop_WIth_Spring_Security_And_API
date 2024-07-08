@@ -300,14 +300,18 @@ From here by Chizuru Yamauchi
 
 ![pic15](./src/main/resources/static/pic15.png)
 
+**Click 'Convert Price'** to go to the convert currency page to convert the price with product id number to different currencies
+
+![pic34](./src/main/resources/static/pic34.png)
+
+**On actual URL, you can see the converted price**
+
+![pic35](./src/main/resources/static/pic35.png)
+
 
 **Click 'Edit'** to edit the product
 
 ![pic16](./src/main/resources/static/pic16.png)
-
-**Click 'Convert Price'** to go to the convert currency page to convert the price with product id number to different currencies
-
-![pic17](./src/main/resources/static/pic17.png)
 
 **Assign role to the user as admin**
 
