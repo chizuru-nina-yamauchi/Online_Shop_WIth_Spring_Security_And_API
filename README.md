@@ -1,9 +1,169 @@
 ### Assignment: Building an Online Shop with Currency Conversion
 
 
-Assignment created and guided with README file by Safwan kher(https://github.com/safwan-kher).
+Assessment created by Safwan kher(https://github.com/safwan-kher).
 
-My part of README for instruction and result is below README by Safwan kher.
+First part of README is by me for application instruction and result description. 
+Second part is the original README by Safwan kher for the project requirements and concepts to implement.
+
+---
+README by Chizuru Yamauchi
+
+## Project Instructions
+
+### 1. Set Up the Project
+1. New Project: From IntelliJ IDEA, create a new Maven project.
+2. Dependencies: Add dependencies for Spring Boot, Spring Security, Spring Mail, Spring Data JPA, PostgreSQL, Thymeleaf, and Bootstrap 5 on pom.xml file.
+3. On terminal, git init -> git remote add origin git@URL -> git remote -v -> git pull origin main -> git branch -M main -> git add. -> git commit -m "----" -> git push origin main
+
+
+### 2. Configure PostgreSQL Database
+1. On terminal, sudo -u postgres psql -> CREATE DATABASE database_name; -> \c database_name -> \q
+
+2. Application Properties: Configure the PostgreSQL database connection in the `application.properties` file(and put the file name in .gitignore to secure the sensitive information.)
+
+### 3. Add Java source code and html files
+
+## Result: How it looks like and works
+
+### You request **localhost:8080**
+
+![pic1](./src/main/resources/static/pic1.png)
+
+**There is no user so far in the database and we have to sign up first.**
+
+![pic2](./src/main/resources/static/pic2.png)
+
+**After filling the sign-up form and click 'Sign Up', the user get the verification email**
+
+![pic37](./src/main/resources/static/pic37.png)
+
+**The user will get verification Email:** Click the url to verify the email.
+
+![pic38](./src/main/resources/static/pic38.png)
+
+*After clicking the link, the user will be verified('enabled' becomes 'true' from 'false' on database) and the user can log in with the username and password.*
+
+on database after verification:
+
+![pic39](./src/main/resources/static/pic39.png)
+
+on the web application:
+
+![pic36](./src/main/resources/static/pic36.png)
+
+
+**Newly log in with a new username and a new password as a user(role)**.
+
+![pic40](./src/main/resources/static/pic40.png)
+
+![pic41](./src/main/resources/static/pic41.png)
+
+
+**Email Testing:** Test passed.
+
+![picTest](./src/main/resources/static/picTest.png)
+
+
+## **Log in again as a different user that has a default role 'user'(username = naruto)**
+
+![pic7](./src/main/resources/static/pic7.png)
+
+**Home as a user** :logged in as a user (username = 'naruto') *Updated
+
+![pic32](./src/main/resources/static/pic32.png)
+
+**Click 'Browser Products' and the user(naruto) can see product lists** :(Jump to Product List and see all the products)
+
+*Because naruto logged in as a role_user now, there is no feature of 'Add New Product'
+
+![pic25](./src/main/resources/static/pic25.png)
+
+## **Log in as a different user that has a role for an admin**
+**Home as an admin**
+
+![pic9](./src/main/resources/static/pic9.png)
+
+**Click 'Admin Home'** and jump to Admin Home Page and see all the option admin could do
+
+![pic10](./src/main/resources/static/pic10.png)
+
+**Click Product List** and see all the products. It is empty now because there is no product yet. But since the user logged in as an admin, the admin can add a new product with 'Add New Product' button.
+
+![pic11](./src/main/resources/static/pic11.png)
+
+**Click Add Product** and add a new product
+
+![pic12](./src/main/resources/static/pic12.png)
+
+![pic13](./src/main/resources/static/pic13.png)
+
+**Click 'Save' the product** then the product list will show the product
+
+![pic14](./src/main/resources/static/pic14.png)
+
+
+**Click 'View'** to see the product detail
+
+![pic15](./src/main/resources/static/pic15.png)
+
+**Click 'Convert Price'** to go to the convert currency page to convert the price with product id number to different currencies
+
+![pic34](./src/main/resources/static/pic34.png)
+
+**On actual URL, you can see the converted price**
+
+![pic35](./src/main/resources/static/pic35.png)
+
+
+**Click 'Edit'** to edit the product
+
+![pic16](./src/main/resources/static/pic16.png)
+
+**Assign role to the user as admin**
+
+![pic18](./src/main/resources/static/pic18.png)
+
+**After assigning the role, you can see the modification on the database**
+
+![pic20](./src/main/resources/static/pic20.png)
+
+![pic19](./src/main/resources/static/pic19.png)
+
+**The user ('user_id 6' = demoChizuru) is now assigned as an admin(and also still as a user) on database. 'role_id 5' = ROLE_ADMIN)**'
+
+![pic21](./src/main/resources/static/pic21.png)
+
+## **demoChizuru can access to 'Admin Home' and 'User Home' since demoChizuru got two roles(Admin and User) now** (*Updated)
+
+![pic28](./src/main/resources/static/pic28.png)
+
+**demoChizuru can go to 'Admin Home' and do the admin tasks**
+
+![pic29](./src/main/resources/static/pic29.png)
+
+**Click 'Manage Users' and see the user list**
+
+![pic26](./src/main/resources/static/pic26.png)
+
+**Click 'View' to see the user detail**
+
+![pic27](./src/main/resources/static/pic27.png)
+
+
+**demoChizuru can still go to 'User Home' and can view as a normal user**(*Updated)
+
+![pic30](./src/main/resources/static/pic30.png)
+
+**demoChizuru can view her own profile**
+
+![pic31](./src/main/resources/static/pic31.png)
+
+**When you want to log out** click logout, and you will be logged out, then you can log in again as a user or admin.
+
+![pic22](./src/main/resources/static/pic22.png)
+
+
 
 ---
 README and instruction by Safwan kher.
@@ -207,165 +367,4 @@ Submit the following:
    - Error handling ensures that your application can gracefully handle unexpected situations. It includes throwing exceptions and providing meaningful error messages to the user.
 
 By completing this assignment, you will gain hands-on experience with these concepts and learn how to build a secure, user-friendly online shop application with currency conversion capabilities.
-
-
-------
-
-
-From here by Chizuru Yamauchi
-
-
-## Project Instructions
-
-### 1. Set Up the Project
-1. New Project: From IntelliJ IDEA, create a new Maven project.
-2. Dependencies: Add dependencies for Spring Boot, Spring Data JPA, PostgreSQL, Thymeleaf, and Bootstrap 5.
-3. On terminal, git init -> git remote add origin git@URL -> git remote -v -> git pull origin main -> git branch -M main -> git add. -> git commit -m "----" -> git push origin main
-
-
-### 2. Configure PostgreSQL Database
-1. On terminal, sudo -u postgres psql -> CREATE DATABASE database_name; -> \c database_name -> \q
-
-2. Application Properties: Configure the PostgreSQL database connection in the `application.properties` file(and put the file name in .gitignore to secure the sensitive information.)
-
-### 3. Add Java source code and html files
-
-## Result: How it looks like and works
-
-### You request **localhost:8080**
-
-![pic1](./src/main/resources/static/pic1.png)
-
-**There is no user so far in the database and we have to sign up first.**
-
-![pic2](./src/main/resources/static/pic2.png)
-
-**After filling the sign-up form and click 'Sign Up', the user get the verification email**
-
-![pic37](./src/main/resources/static/pic37.png)
-
-**The user will get verification Email:** Click the url to verify the email.
-
-![pic38](./src/main/resources/static/pic38.png)
-
-*After clicking the link, the user will be verified('enabled' becomes 'true' from 'false' on database) and the user can log in with the username and password.*
-
-on database after verification:
-
-![pic39](./src/main/resources/static/pic39.png)
-
-on the web application:
-
-![pic36](./src/main/resources/static/pic36.png)
-
-
-**Newly log in with a new username and a new password as a user(role)**.
-
-![pic40](./src/main/resources/static/pic40.png)
-
-![pic41](./src/main/resources/static/pic41.png)
-
-
-**Email Testing:** Test passed.
-
-![picTest](./src/main/resources/static/picTest.png)
-
-
-### **Log in again as a default role 'user'(username = naruto)**
-
-![pic7](./src/main/resources/static/pic7.png)
-
-**Home as a user** :logged in as a user (username = 'naruto') *Updated
-
-![pic32](./src/main/resources/static/pic32.png)
-
-**Click 'Browser Products' and the user(naruto) can see product lists** :(Jump to Product List and see all the products)
-  
-*Because naruto logged in as a role_user now, there is no feature of 'Add New Product'
-
-![pic25](./src/main/resources/static/pic25.png)
-
-### **Log in as an admin**
-**Home as an admin**
-
-![pic9](./src/main/resources/static/pic9.png)
-
-**Click 'Admin Home'** and jump to Admin Home Page and see all the option admin could do
-
-![pic10](./src/main/resources/static/pic10.png)
-
-**Click Product List** and see all the products. It is empty now because there is no product yet. But since the user logged in as an admin, the admin can add a new product with 'Add New Product' button.
-
-![pic11](./src/main/resources/static/pic11.png)
-
-**Click Add Product** and add a new product
-
-![pic12](./src/main/resources/static/pic12.png)
-
-![pic13](./src/main/resources/static/pic13.png)
-
-**Click 'Save' the product** then the product list will show the product
-
-![pic14](./src/main/resources/static/pic14.png)
-
-
-**Click 'View'** to see the product detail
-
-![pic15](./src/main/resources/static/pic15.png)
-
-**Click 'Convert Price'** to go to the convert currency page to convert the price with product id number to different currencies
-
-![pic34](./src/main/resources/static/pic34.png)
-
-**On actual URL, you can see the converted price**
-
-![pic35](./src/main/resources/static/pic35.png)
-
-
-**Click 'Edit'** to edit the product
-
-![pic16](./src/main/resources/static/pic16.png)
-
-**Assign role to the user as admin**
-
-![pic18](./src/main/resources/static/pic18.png)
-
-**After assigning the role, you can see the modification on the database**
-
-![pic20](./src/main/resources/static/pic20.png)
-
-![pic19](./src/main/resources/static/pic19.png)
-
-**The user ('user_id 6' = demoChizuru) is now assigned as an admin(and also still as a user) on database. 'role_id 5' = ROLE_ADMIN)**'
-
-![pic21](./src/main/resources/static/pic21.png)
-
-**demoChizuru can access to 'Admin Home' and 'User Home' since demoChizuru got two roles now** (*Updated)
-
-![pic28](./src/main/resources/static/pic28.png)
-
-**demoChizuru can go to 'Admin Home' and do the admin tasks**
-
-![pic29](./src/main/resources/static/pic29.png)
-
-**Click 'Manage Users' and see the user list**
-
-![pic26](./src/main/resources/static/pic26.png)
-
-**Click 'View' to see the user detail**
-
-![pic27](./src/main/resources/static/pic27.png)
-
-
-**demoChizuru can still go to 'User Home' and can view as a normal user**(*Updated)
-
-![pic30](./src/main/resources/static/pic30.png)
-
-**demoChizuru can view her own profile**
-
-![pic31](./src/main/resources/static/pic31.png)
-
-**When you want to log out** click logout, and you will be logged out, then you can log in again as a user or admin.
-
-![pic22](./src/main/resources/static/pic22.png)
 
