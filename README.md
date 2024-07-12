@@ -3,6 +3,8 @@
 
 Assignment created and guided with README file by Safwan kher(https://github.com/safwan-kher).
 
+My part of README for instruction and result is below README by Safwan kher.
+
 ---
 README and instruction by Safwan kher.
 
