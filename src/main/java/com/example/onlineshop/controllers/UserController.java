@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -24,6 +27,9 @@ public class UserController {
 
     @Autowired
     private RoleService roleService;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
 
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/home")
@@ -92,15 +98,18 @@ public class UserController {
     @Transactional
     @GetMapping("/registrationConfirm")
     public String confirmRegistration(@RequestParam("token") String token, Model model){
+        logger.info("confirmRegistration method called with token: " + token);
         VerificationToken verificationToken = userService.getVerificationToken(token);
         if (verificationToken == null) {
             model.addAttribute("message", "Invalid token.");
+            logger.warn("Invalid token: " + token);
             return "registration-confirm";
         }
         AppUser user = verificationToken.getUser();
         userService.enableUser(user);
         userService.save(user); // Save the user after enabling
         model.addAttribute("message", "Your account has been verified. You can now log in.");
+        logger.info("User enabled and saved: " + user.getUsername());
         return "registration-confirm";
     }
 

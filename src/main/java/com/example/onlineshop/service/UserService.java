@@ -1,7 +1,5 @@
 package com.example.onlineshop.service;
 
-import java.util.logging.Logger;
-
 
 import com.example.onlineshop.models.AppUser;
 import com.example.onlineshop.models.Role;
@@ -9,7 +7,7 @@ import com.example.onlineshop.models.VerificationToken;
 import com.example.onlineshop.repositories.RoleRepository;
 import com.example.onlineshop.repositories.UserRepository;
 import com.example.onlineshop.repositories.VerificationRepository;
-import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,7 +18,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import jakarta.transaction.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 
 import java.util.Collection;
 import java.util.Collections;
@@ -50,7 +54,7 @@ public class UserService implements UserDetailsService {
     private TransactionTemplate transactionTemplate;
 
 
-    private static final Logger logger = Logger.getLogger(UserService.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 
     /**
@@ -126,7 +130,7 @@ public class UserService implements UserDetailsService {
             userRepository.save(managedUser);
             logger.info("User enabled: " + managedUser.getUsername());
         } catch (Exception e) {
-            logger.severe("Failed to enable user: " + e.getMessage());
+            logger.warn("Failed to enable user: " + e.getMessage());
             throw e;
         }
     }
@@ -135,13 +139,13 @@ public class UserService implements UserDetailsService {
         // To send the email, we need the recipient's email address, the subject, and the message.
         String recipientAddress = user.getEmail();
         String subject = "Registration Confirmation";
-        String confirmationUrl = "http://localhost:8080/registrationConfirm?token=" + token;
+        String confirmationUrl = "http://localhost:8080/users/registrationConfirm?token=" + token;
         String message = "To confirm your e-mail address, please click the link below:\n" + confirmationUrl;
 
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(recipientAddress);
         email.setSubject(subject);
-        email.setText(message + confirmationUrl);
+        email.setText(message);
         try {
             javaMailSender.send(email);
         } catch(Exception e) {

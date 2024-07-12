@@ -240,17 +240,28 @@ From here by Chizuru Yamauchi
 
 **After filling the sign-up form and click 'Sign Up', the user get the verification email**
 
-![pic3](./src/main/resources/static/pic3.png)
+![pic37](./src/main/resources/static/pic37.png)
 
 **The user will get verification Email:** Click the url to verify the email.
 
-![pic4](./src/main/resources/static/pic4.png)
+![pic38](./src/main/resources/static/pic38.png)
 
+*After clicking the link, the user will be verified('enabled' becomes 'true' from 'false' on database) and the user can log in with the username and password.*
 
+on database after verification:
+
+![pic39](./src/main/resources/static/pic39.png)
+
+on the web application:
+
+![pic36](./src/main/resources/static/pic36.png)
 
 
 **Newly log in with a new username and a new password as a user(role)**.
-![pic5](./src/main/resources/static/pic5.png)
+
+![pic40](./src/main/resources/static/pic40.png)
+
+![pic41](./src/main/resources/static/pic41.png)
 
 
 **Email Testing:** Test passed.
